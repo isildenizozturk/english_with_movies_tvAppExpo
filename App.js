@@ -1,13 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import ContextPage from './screens/ContextPage';
+import VideoPlayer from './screens/VideoPlayer';
 
-export default function App() {
+const switchNavigator = createSwitchNavigator({
+  mainFlow: createStackNavigator({
+    ContextPage: ContextPage,
+    VideoPlayer: VideoPlayer,
+  })
+});
+
+
+const App = createAppContainer(switchNavigator);
+
+export default () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <App />
   );
 }
 
